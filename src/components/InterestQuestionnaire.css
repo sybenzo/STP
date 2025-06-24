@@ -1,0 +1,572 @@
+/* Interest Questionnaire Styles */
+.interest-questionnaire-screen {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 25%, #d946ef 75%, #f97316 100%);
+  padding: 20px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Progress Header */
+.progress-header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.progress-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4B5563;
+}
+
+.main-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #E5E7EB;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.main-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6);
+  border-radius: 12px;
+  transition: width 0.3s ease;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.overall-progress {
+  text-align: center;
+  font-size: 12px;
+  color: #6B7280;
+  font-weight: 500;
+}
+
+/* Content Container */
+.interest-questionnaire-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.section-title {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.section-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Card Indicators */
+.card-indicators {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+  padding: 0 20px;
+}
+
+.card-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 6px;
+  border-radius: 12px;
+  background: rgb(255, 255, 255);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-width: 50px;
+}
+
+.card-indicator:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.card-indicator.active {
+  background: rgb(255, 255, 255);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-indicator.has-selections {
+  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.card-indicator.active.has-selections {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-color: rgba(139, 92, 246, 0.8);
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.4);
+}
+
+.indicator-emoji {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.indicator-index {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgb(9, 8, 8);
+  opacity: 0.9;
+}
+
+/* Single Interest Card */
+.single-interest-card-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.single-interest-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  max-width: 800px;
+  width: 100%;
+  transform: translateY(0);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.single-interest-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Header */
+.single-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.single-card-icon-container {
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.single-card-icon {
+  color: white;
+}
+
+.single-card-title-section {
+  flex: 1;
+}
+
+.single-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #1e293b, #475569);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.single-card-description {
+  color: #64748b;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.single-card-progress-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.progress-percentage {
+  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+/* Card Progress Bar */
+.single-card-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(90deg, #f1f5f9, #e2e8f0);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 32px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.single-card-progress-fill {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.3s ease;
+}
+
+/* Statements Section */
+.statements-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #334155, #475569);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.statements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.single-statement-button {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.single-statement-button:hover {
+  border-color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateX(6px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.single-statement-button.selected {
+  border-color: transparent;
+  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+  transform: translateX(6px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+.statement-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statement-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #475569;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.single-statement-button.selected .statement-text {
+  color: white;
+  font-weight: 600;
+}
+
+.statement-check-icon {
+  color: white;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+/* Navigation */
+.single-card-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  backdrop-filter: blur(16px);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-button:hover {
+  background: white;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  color: #334155;
+}
+
+.nav-button:active {
+  transform: translateY(0);
+}
+
+.nav-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.card-counter {
+  text-align: center;
+  color: white;
+  background: white;
+  padding: 16px 24px;
+  border-radius: 16px;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.counter-text {
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.8;
+  margin-bottom: 2px;
+}
+
+.counter-value {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Gradient Classes for Icons */
+.agriculture-gradient { 
+  background: linear-gradient(135deg, #22c55e, #16a34a, #15803d); 
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+.architecture-gradient { 
+  background: linear-gradient(135deg, #64748b, #475569, #334155); 
+  box-shadow: 0 4px 15px rgba(100, 116, 139, 0.3);
+}
+.arts-gradient { 
+  background: linear-gradient(135deg, #ec4899, #db2777, #be185d); 
+  box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+}
+.business-gradient { 
+  background: linear-gradient(135deg, #3b82f6, #2563eb, #1d4ed8); 
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+.education-gradient { 
+  background: linear-gradient(135deg, #f59e0b, #d97706, #b45309); 
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+.finance-gradient { 
+  background: linear-gradient(135deg, #06b6d4, #0891b2, #0e7490); 
+  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+}
+.government-gradient { 
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed, #6d28d9); 
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+.health-gradient { 
+  background: linear-gradient(135deg, #ef4444, #dc2626, #b91c1c); 
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+.hospitality-gradient { 
+  background: linear-gradient(135deg, #14b8a6, #0d9488, #0f766e); 
+  box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+}
+.human-gradient { 
+  background: linear-gradient(135deg, #f97316, #ea580c, #c2410c); 
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+}
+.it-gradient { 
+  background: linear-gradient(135deg, #6366f1, #4f46e5, #4338ca); 
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+.law-gradient { 
+  background: linear-gradient(135deg, #374151, #1f2937, #111827); 
+  box-shadow: 0 4px 15px rgba(55, 65, 81, 0.3);
+}
+.manufacturing-gradient { 
+  background: linear-gradient(135deg, #71717a, #52525b, #3f3f46); 
+  box-shadow: 0 4px 15px rgba(113, 113, 122, 0.3);
+}
+.marketing-gradient { 
+  background: linear-gradient(135deg, #e11d48, #be123c, #9f1239); 
+  box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3);
+}
+.stem-gradient { 
+  background: linear-gradient(135deg, #0ea5e9, #0284c7, #0369a1); 
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+}
+.transportation-gradient { 
+  background: linear-gradient(135deg, #eab308, #ca8a04, #a16207); 
+  box-shadow: 0 4px 15px rgba(234, 179, 8, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .interest-questionnaire-screen {
+    padding: 16px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .single-interest-card {
+    padding: 24px 20px;
+  }
+
+  .single-card-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .single-card-title {
+    font-size: 1.3rem;
+  }
+
+  .card-indicators {
+    gap: 6px;
+    padding: 0 10px;
+  }
+
+  .card-indicator {
+    min-width: 40px;
+    padding: 6px 4px;
+  }
+
+  .indicator-emoji {
+    font-size: 16px;
+  }
+
+  .indicator-index {
+    font-size: 10px;
+  }
+
+  .single-card-navigation {
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 10px;
+  }
+
+  .nav-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .progress-info {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .single-statement-button {
+    padding: 14px 16px;
+  }
+
+  .statement-text {
+    font-size: 14px;
+  }
+
+  .card-indicators {
+    justify-content: center;
+  }
+}
+
+/* Animation Classes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.single-interest-card {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Focus States for Accessibility */
+.single-statement-button:focus {
+  outline: 3px solid #06b6d4;
+  outline-offset: 2px;
+}
+
+.nav-button:focus {
+  outline: 3px solid #06b6d4;
+  outline-offset: 2px;
+}
+
+.card-indicator:focus {
+  outline: 3px solid #06b6d4;
+  outline-offset: 2px;
+}
+.card-indicator.clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-indicator.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-indicator.clickable:active {
+  transform: translateY(0);
+}

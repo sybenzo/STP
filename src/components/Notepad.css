@@ -1,0 +1,39 @@
+.notepad-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notepad-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.notepad-content {
+  margin-top: 20px;
+}
+
+.student-info {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.student-info:last-child {
+  border-bottom: none;
+}
+
+.student-name {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.student-info p {
+  margin: 5px 0;
+  font-size: 14px;
+}

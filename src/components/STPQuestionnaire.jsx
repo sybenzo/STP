@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronRight, ChevronLeft, CheckCircle, Brain, Heart, Users, Zap } from 'lucide-react';
-import './STPQuestionnaire.css'; // Import your CSS styles
+import { useNavigate } from 'react-router-dom';
+import './STPQuestionnaire.css';
 
 const BehavioralQuestionnaire = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [behavioralAnswers, setBehavioralAnswers] = useState({});
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
 
   const dimensions = [
     {
@@ -53,27 +55,24 @@ const BehavioralQuestionnaire = () => {
     { dimension: 'emotional', text: '4. When you have a lot of homework, how do you usually feel?', emoji: '😔' },
     { dimension: 'emotional', text: '5. How often do you feel calm and relaxed during your school day?', emoji: '😌' },
     { dimension: 'emotional', text: '6. What do you usually do when you feel sad or frustrated?', emoji: '🤗' },
-    
     { dimension: 'social', text: '7. Do you enjoy participating in school events or group activities?', emoji: '👥' },
     { dimension: 'social', text: '8. Do you enjoy working in teams or group projects?', emoji: '👑' },
     { dimension: 'social', text: '9. How often do you start conversations with classmates or teachers?', emoji: '💬' },
     { dimension: 'social', text: '10. Do you find it easy to make new friends?', emoji: '🤝' },
     { dimension: 'social', text: '11. Do you feel comfortable sharing your ideas in class discussions?', emoji: '🎤' },
     { dimension: 'social', text: '12. How do you usually respond when someone in your class needs help?', emoji: '🌐' },
-
     { dimension: 'motivation', text: '13. What keeps you going when you\'re finding a subject difficult?', emoji: '🎯' },
     { dimension: 'motivation', text: '14. Do you set goals for yourself at school or in life?', emoji: '🚀' },
     { dimension: 'motivation', text: '15. How do you feel when you complete a difficult assignment?', emoji: '💪' },
     { dimension: 'motivation', text: '16. Do you like challenging yourself to do better than before?', emoji: '🌟' },
     { dimension: 'motivation', text: '17. What motivates you to study even when you\'re tired or distracted?', emoji: '📈' },
     { dimension: 'motivation', text: '18. Do you try to improve your performance after receiving feedback?', emoji: '🏆' },
-
     { dimension: 'resilience', text: '19. How do you deal with peer pressure or negative comments?', emoji: '🧠' },
     { dimension: 'resilience', text: '20. What do you do when things don\'t go as planned?', emoji: '🔄' },
     { dimension: 'resilience', text: '21. How quickly do you bounce back after a failure or poor result?', emoji: '📚' },
     { dimension: 'resilience', text: '22. Do you ask for help when you don\'t understand something?', emoji: '🎯' },
     { dimension: 'resilience', text: '23. When someone criticizes your work, how do you react?', emoji: '🧩' },
-    { dimension: 'resilience', text: '24. Have you ever improved in something you used to struggle with?', emoji: '🌪️' },
+    { dimension: 'resilience', text: '24. Have you ever improved in something you used to struggle with?', emoji: '🌪️' }
   ];
 
   const responseOptions = [
@@ -89,18 +88,39 @@ const BehavioralQuestionnaire = () => {
   }, []);
 
   const handleAnswer = (value) => {
-    setBehavioralAnswers(prev => ({
-      ...prev,
+    const question = behavioralQuestions[currentQuestion];
+    const dimension = dimensions.find(d => d.id === question.dimension);
+
+    // Save current answer to state
+    const updatedAnswers = {
+      ...behavioralAnswers,
       [currentQuestion]: value
-    }));
+    };
+    setBehavioralAnswers(updatedAnswers);
+
+    // Prepare the response object to save
+    const answerToSave = {
+      id: dimension.id,
+      name: dimension.name,
+      question: question.text,
+      value: value
+    };
+
+    // Fetch old data from localStorage
+    const existingAnswers = JSON.parse(localStorage.getItem("behavioralAnswers")) || [];
+
+    // Replace or append
+    const updatedStorage = [...existingAnswers.filter(a => a.question !== question.text), answerToSave];
+
+    // Save to localStorage
+    localStorage.setItem("behavioralAnswers", JSON.stringify(updatedStorage));
   };
 
   const nextQuestion = () => {
     if (currentQuestion < behavioralQuestions.length - 1) {
       setCurrentQuestion(prev => prev + 1);
     } else {
-      // Complete behavioral section
-      alert('Behavioral section completed! Navigate to Interest questions.');
+      navigate('/interest');
     }
   };
 
@@ -110,7 +130,6 @@ const BehavioralQuestionnaire = () => {
     }
   };
 
-  // Calculate progress
   const answeredQuestions = Object.keys(behavioralAnswers).length;
   const totalQuestions = behavioralQuestions.length;
   const currentSectionProgress = ((currentQuestion + 1) / totalQuestions) * 100;
@@ -122,7 +141,6 @@ const BehavioralQuestionnaire = () => {
 
   return (
     <div className="questionnaire-screen">
-      {/* Progress Bar */}
       <div className="progress-header">
         <div className="progress-container">
           <div className="progress-info">
@@ -141,13 +159,6 @@ const BehavioralQuestionnaire = () => {
       </div>
 
       <div className="questionnaire-content">
-        {/* Section Header */}
-          {/* <div className="section-header">
-            <h1 className="section-title">Behavioral Questions</h1>
-            <p className="section-subtitle">Tell us about your personality and behavior patterns</p>
-          </div> */}
-
-        {/* Dimension Header and Progress */}
         <div className="dimension-header-container">
           <div className="dimension-header">
             <div className={`dimension-icon-container ${currentDimension?.color}`}>
@@ -159,16 +170,15 @@ const BehavioralQuestionnaire = () => {
             <p className="dimension-description">{currentDimension?.description}</p>
           </div>
 
-          {/* Dimension Progress Indicators */}
           <div className="dimension-progress">
-            {dimensions.map((dim, index) => {
+            {dimensions.map((dim) => {
               const questionsInDim = behavioralQuestions.filter(q => q.dimension === dim.id).length;
               const answeredInDim = behavioralQuestions
                 .map((q, qIndex) => ({ ...q, qIndex }))
                 .filter(q => q.dimension === dim.id && behavioralAnswers[q.qIndex])
                 .length;
-              const dimProgress = questionsInDim > 0 ? (answeredInDim / questionsInDim) * 100 : 0;
-              
+              const dimProgress = (answeredInDim / questionsInDim) * 100;
+
               return (
                 <div key={dim.id} className="dim-progress-card">
                   <div className="dim-progress-emoji">{dim.emoji}</div>
@@ -179,27 +189,19 @@ const BehavioralQuestionnaire = () => {
                       style={{ width: `${dimProgress}%` }}
                     ></div>
                   </div>
-                  <div className="dim-progress-text">
-                    {answeredInDim}/{questionsInDim}
-                  </div>
+                  <div className="dim-progress-text">{answeredInDim}/{questionsInDim}</div>
                 </div>
               );
             })}
           </div>
         </div>
 
-        {/* Question Card */}
         <div className="question-card">
           <div className="question-content">
-            <div className="question-emoji">
-              {currentQuestionData?.emoji}
-            </div>
-            <h3 className="question-text">
-              {currentQuestionData?.text}
-            </h3>
+            <div className="question-emoji">{currentQuestionData?.emoji}</div>
+            <h3 className="question-text">{currentQuestionData?.text}</h3>
           </div>
 
-          {/* Response Options */}
           <div className="options-container">
             {responseOptions.map((option) => (
               <button
@@ -224,7 +226,6 @@ const BehavioralQuestionnaire = () => {
             ))}
           </div>
 
-          {/* Navigation */}
           <div className="navigation">
             <button
               onClick={previousQuestion}
@@ -248,7 +249,7 @@ const BehavioralQuestionnaire = () => {
               className="nav-button next-button"
             >
               <span>
-                {currentQuestion === behavioralQuestions.length - 1 
+                {currentQuestion === totalQuestions - 1 
                   ? 'Complete Behavioral' 
                   : 'Next'
                 }

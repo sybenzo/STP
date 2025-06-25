@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronRight, ChevronLeft, CheckCircle, Sprout, Building, Palette, Briefcase, GraduationCap, DollarSign, Scale, Stethoscope, Plane, Home, Monitor, Shield, Cog, Megaphone, Microscope, Truck } from 'lucide-react';
 import './InterestQuestionnaire.css';
-
+import { useNavigate } from 'react-router-dom';
 const InterestQuestionnaire = () => {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [selectedInterests, setSelectedInterests] = useState(new Set());
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
 
   const interestClusters = [
     {
@@ -285,7 +286,7 @@ const InterestQuestionnaire = () => {
     if (currentCardIndex < interestClusters.length - 1) {
       setCurrentCardIndex(prev => prev + 1);
     } else {
-      alert('Interest questionnaire completed! Results would be displayed here.');
+      navigate('/result');
     }
   };
 
